@@ -6,7 +6,7 @@ const sleep = (ms) => {
 }
 
 exports.handler = async (event, context) => {
-  require('dotenv').config()
+  // require('dotenv').config()
   const AWS = require('aws-sdk')
   const credentials = new AWS.Credentials({accessKeyId: process.env.ZEO_AWS_ACCESS_KEY_ID, secretAccessKey: process.env.ZEO_AWS_SECRET_ACCESS_KEY})
 
