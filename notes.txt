@@ -1,0 +1,8 @@
+dns:  ec2-3-10-208-83.eu-west-2.compute.amazonaws.com
+user: Administrator
+pass: OsPC8)iW&Vcjw!hzMaP@7$Xzem;9z.A5
+
+
+ZEO IAM
+Access - AKIA4IBAQMOO6PZ3IJCQ
+Secret - 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 Hide
