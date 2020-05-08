@@ -1,19 +1,20 @@
-require('dotenv').config()
-
-const AWS = require('aws-sdk')
-AWS.config.update({region: 'eu-west-2'})
-const ec2 = new AWS.EC2()
-
-const ACCESS_CODE = process.env.ACCESS_CODE
-const INSTANCE_ID = process.env.INSTANCE_ID
-const USERNAME = process.env.USERNAME
-const PASSWORD = process.env.PASSWORD
 
 const sleep = (ms) => {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
 
 exports.handler = async (event, context) => {
+  require('dotenv').config()
+
+  const AWS = require('aws-sdk')
+  AWS.config.update({region: 'eu-west-2'})
+  const ec2 = new AWS.EC2()
+
+  const ACCESS_CODE = process.env.ACCESS_CODE
+  const INSTANCE_ID = process.env.INSTANCE_ID
+  const USERNAME = process.env.USERNAME
+  const PASSWORD = process.env.PASSWORD
+
   try {
     if (event.httpMethod !== 'POST') {
       return { statusCode: 405, body: 'Function not founds...' }
