@@ -1,0 +1,23 @@
+{
+  "name": "zeo-services-access",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dangarfield/zeo-services-access.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dangarfield/zeo-services-access/issues"
+  },
+  "homepage": "https://github.com/dangarfield/zeo-services-access#readme",
+  "dependencies": {
+    "aws-sdk": "^2.673.0",
+    "dotenv": "^8.2.0"
+  }
+}
