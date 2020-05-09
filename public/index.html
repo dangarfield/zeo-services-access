@@ -107,7 +107,7 @@
 
 
     <script>
-        let loggedIn = false
+        let status = 'unknown'
         const getStatus = async (accessCode, action) => {
             let req = {
                 accessCode: accessCode
@@ -132,9 +132,8 @@
                 $('.access-code-error').hide()
                 $('.section-login').hide()
                 $('.section-access').show()
-                loggedIn = true
+                status = statusJson.status
             }
-
 
             if (statusJson.status === 'stopped') {
                 $('.status').html(`<span class="tag is-danger">${statusJson.status}</span>`)
@@ -185,7 +184,9 @@
 
             })
             setInterval(function () {
-                if (loggedIn) {
+                console.log('interval', status, status !== 'unknown', status !== 'stopped', status !==
+                    'running')
+                if (status !== 'unknown' && status !== 'stopped' && status !== 'running') {
                     let accessCode = $('input.access-code').val()
                     getStatus(accessCode)
                 }
