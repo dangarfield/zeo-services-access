@@ -96,7 +96,7 @@
                                         class="control-value">Loading...</span></p>
 
                                 <p class="instructions"> Instructions</p>
-                                <ul>
+                                <ul class="instructions">
                                     <li>Using the above credentials, you have to first login to remote workstation
                                         using DICE DCV Viewer,
                                         this will automatically start live studio</li>
@@ -159,7 +159,7 @@
                 $('.action-pending').hide()
                 $('.action-stop').hide()
 
-                $('.url, .username, .password, .control').hide()
+                $('.url, .username, .password, .control, .instructions').hide()
             } else if (statusJson.status === 'running') {
                 $('.status').html(`<span class="tag is-primary">${statusJson.status}</span>`)
 
@@ -172,7 +172,7 @@
                 $('.password-value').html(`<span class="tag is-primary">${statusJson.password}</span>`)
                 $('.control-value').html(`<span class="tag is-primary">${statusJson.webControl}</span>`)
 
-                $('.url, .username, .password, .control').show()
+                $('.url, .username, .password, .control, .instructions').show()
             } else { // eg pending etc
                 $('.status').html(`<span class="tag is-warning">${statusJson.status}</span>`)
 
@@ -180,7 +180,7 @@
                 $('.action-pending').show()
                 $('.action-stop').hide()
 
-                $('.url, .username, .password, .control').hide()
+                $('.url, .username, .password, .control, .instructions').hide()
             }
         }
         const init = async () => {
