@@ -81,22 +81,32 @@
 
                     <div class="column">
                         <h2 class="title">Access Credentials</h2>
-                        <div class="access-credentials">
-                            <p style="margin-bottom: 20px;"><i>Note: This page automatically refreshes</i></p>
-                            <p style="margin-bottom: 20px;">Workstation Status: <span class="status">Loading...</span>
-                            </p>
-                            <p class="url">Workstation URL: <span class="url-value">Loading...</span></p>
-                            <p class="username">Workstation Username: <span class="username-value">Loading...</span></p>
-                            <p class="password" style="margin-bottom: 20px;">Workstation Password: <span
-                                    class="password-value">Loading...</span></p>
-                            <p class="instructions"> Using the above credentials, log in to the DICE DCV remote desktop
-                                client to access the workstation</p>
+                        <div class="content">
+                            <div class="access-credentials">
+                                <p style="margin-bottom: 20px;"><i>Note: This page automatically refreshes</i></p>
+                                <p style="margin-bottom: 20px;">Workstation Status: <span
+                                        class="status">Loading...</span>
+                                </p>
+                                <p class="url">Workstation URL: <span class="url-value">Loading...</span></p>
+                                <p class="username">Workstation Username: <span class="username-value">Loading...</span>
+                                </p>
+                                <p class="password">Workstation Password: <span class="password-value">Loading...</span>
+                                </p>
+                                <p class="control" style="margin-bottom: 20px;">Web Control URL: <span
+                                        class="control-value">Loading...</span></p>
+
+                                <p class="instructions"> Using the above credentials, log in to the DICE DCV remote
+                                    desktop
+                                    client to access the workstation</p>
+                            </div>
+                            <div class="action" style="margin-top: 20px;">
+                                <button class="button is-primary action-start">Start Workstation</button>
+                                <button class="button is-danger action-stop">Stop Workstation</button>
+                                <button class="button is-info action-pending" disabled="disabled">... Loading
+                                    ...</button>
+                            </div>
                         </div>
-                        <div class="action" style="margin-top: 20px;">
-                            <button class="button is-primary action-start">Start Workstation</button>
-                            <button class="button is-danger action-stop">Stop Workstation</button>
-                            <button class="button is-info action-pending" disabled="disabled">... Loading ...</button>
-                        </div>
+
                     </div>
 
                 </div>
@@ -142,7 +152,7 @@
                 $('.action-pending').hide()
                 $('.action-stop').hide()
 
-                $('.url, .username, .password').hide()
+                $('.url, .username, .password, .control').hide()
             } else if (statusJson.status === 'running') {
                 $('.status').html(`<span class="tag is-primary">${statusJson.status}</span>`)
 
@@ -153,8 +163,9 @@
                 $('.url-value').html(`<span class="tag is-primary">${statusJson.url}</span>`)
                 $('.username-value').html(`<span class="tag is-primary">${statusJson.username}</span>`)
                 $('.password-value').html(`<span class="tag is-primary">${statusJson.password}</span>`)
+                $('.control-value').html(`<span class="tag is-primary">${statusJson.webControl}</span>`)
 
-                $('.url, .username, .password').show()
+                $('.url, .username, .password, .control').show()
             } else { // eg pending etc
                 $('.status').html(`<span class="tag is-warning">${statusJson.status}</span>`)
 
@@ -162,7 +173,7 @@
                 $('.action-pending').show()
                 $('.action-stop').hide()
 
-                $('.url, .username, .password').hide()
+                $('.url, .username, .password, .control').hide()
             }
         }
         const init = async () => {
@@ -184,8 +195,6 @@
 
             })
             setInterval(function () {
-                console.log('interval', status, status !== 'unknown', status !== 'stopped', status !==
-                    'running')
                 if (status !== 'unknown' && status !== 'stopped' && status !== 'running') {
                     let accessCode = $('input.access-code').val()
                     getStatus(accessCode)

@@ -17,6 +17,7 @@ exports.handler = async (event, context) => {
   const INSTANCE_ID = process.env.INSTANCE_ID
   const USERNAME = process.env.USERNAME
   const PASSWORD = process.env.PASSWORD
+  const WEB_CONTROL = process.env.WEB_CONTROL
 
   try {
     if (event.httpMethod !== 'POST') {
@@ -44,7 +45,7 @@ exports.handler = async (event, context) => {
     let instance = instances.Reservations[0].Instances.filter(i => i.InstanceId === INSTANCE_ID)[0]
     // console.log('instance', instance)
     // let status = instances.InstanceStatuses[0].InstanceState.Name
-    return { statusCode: 200, body: JSON.stringify({ status: instance.State.Name, url: instance.PublicDnsName, username: USERNAME, password: PASSWORD }) }
+    return { statusCode: 200, body: JSON.stringify({ status: instance.State.Name, url: instance.PublicDnsName, username: USERNAME, password: PASSWORD, webControl: WEB_CONTROL }) }
   } catch (err) {
     console.log('err', err)
     return { statusCode: 500, body: err.toString() }
